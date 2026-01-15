@@ -1,0 +1,20 @@
+# const.py
+HOST = 'localhost'
+PORT = 65432
+BUFF_SIZE = 1024
+FORMAT = 'utf-8'
+
+# Cấu hình Game
+BOARD_SIZE = 15         
+UI_SIZE = 30            
+WINDOW_WIDTH = BOARD_SIZE * UI_SIZE
+WINDOW_HEIGHT = BOARD_SIZE * UI_SIZE
+
+# Giao thức tin nhắn
+MSG_LOGIN = "LOGIN"
+MSG_WAIT = "WAIT"
+MSG_START = "START"
+MSG_MOVE = "MOVE"
+MSG_WIN = "WIN"
+MSG_LOSE = "LOSE"
+MSG_DISCONNECT = "DISCONNECT"
