@@ -14,6 +14,6 @@ MSG_MOVE = "MOVE"; MSG_CHAT = "CHAT"; MSG_WIN = "WIN"
 MSG_LOSE = "LOSE"; MSG_DISCONNECT = "DISCONNECT"
 
 COLOR = {
-    "bg": "#f0f0f0", "board": "#f0f0f0", "text": "#000000",
-    "grid": "#000000", "x": "#ff5f56", "o": "#28c840"
+    "bg": "#f0f0f0", "board": "#f0f0f0", "text": "#333333",
+    "grid": "#77B3BB", "x": "#ff5f56", "o": "#28c840"
 }

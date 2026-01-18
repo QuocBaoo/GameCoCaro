@@ -26,17 +26,17 @@ class CaroModern:
 
     def setup_ui(self):
         # Sidebar
-        side = tk.Frame(self.root, width=300, bg="#252526")
+        side = tk.Frame(self.root, width=300, bg=COLOR["bg"])
         side.pack(side=tk.RIGHT, fill=tk.Y)
         
         # Hiển thị Tên và Lượt đi [Yêu cầu của bạn]
-        self.lbl_me = tk.Label(side, text=f"Bạn: {self.player_name}", bg="#252526", fg="#4daafc", font=("Arial", 12, "bold"))
+        self.lbl_me = tk.Label(side, text=f"Bạn: {self.player_name}", bg=COLOR["bg"], fg="#333333", font=("Arial", 12, "bold"))
         self.lbl_me.pack(pady=(20, 5))
         
-        self.lbl_status = tk.Label(side, text="Chờ đối thủ...", bg="#252526", fg="#ffffff", font=("Arial", 11, "italic"))
+        self.lbl_status = tk.Label(side, text="Chờ đối thủ...", bg=COLOR["bg"], fg="#555555", font=("Arial", 11, "italic"))
         self.lbl_status.pack(pady=5)
 
-        self.lbl_score = tk.Label(side, text="Tỉ số: 0 - 0", bg="#252526", fg="#ffcc00", font=("Arial", 14, "bold"))
+        self.lbl_score = tk.Label(side, text="Tỉ số: 0 - 0", bg=COLOR["bg"], fg="#333333", font=("Arial", 14, "bold"))
         self.lbl_score.pack(pady=20)
 
         self.chat_display = scrolledtext.ScrolledText(side, width=30, height=20, bg=COLOR["board"], fg=COLOR["text"], state='disabled')

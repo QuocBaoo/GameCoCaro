@@ -12,21 +12,25 @@ def send_json(conn, data):
     except: pass
 
 def handle_client(conn, addr):
+    print(f"[NEW CONNECTION] {addr} connected.")
     try:
         data = conn.recv(BUFF_SIZE).decode(FORMAT)
         name = json.loads(data).get('name', 'User')
         client_names[conn] = name
         scores[conn] = 0
         clients.append(conn)
+        print(f"[LOGIN] User: {name}")
 
         if len(clients) % 2 == 0:
             opp = clients[-2]
             rooms[conn] = opp; rooms[opp] = conn
+            print(f"[MATCH] Room created: {client_names[opp]} vs {name}")
             # Gửi tên đối thủ và điểm số ban đầu
             send_json(opp, {"type": MSG_START, "symbol": "X", "turn": True, "opp_name": name, "s1": 0, "s2": 0})
             send_json(conn, {"type": MSG_START, "symbol": "O", "turn": False, "opp_name": client_names[opp], "s1": 0, "s2": 0})
         else:
             send_json(conn, {"type": MSG_WAIT})
+            print(f"[WAIT] {name} is waiting for opponent...")
 
         while True:
             raw = conn.recv(BUFF_SIZE).decode(FORMAT)
@@ -37,6 +41,7 @@ def handle_client(conn, addr):
                 if not opp: continue
 
                 if msg['type'] == MSG_WIN:
+                    print(f"[GAME OVER] Winner: {name}")
                     scores[conn] += 1
                     # Reset ván mới ngay lập tức
                     send_json(conn, {"type": MSG_START, "symbol": "X", "turn": True, "opp_name": client_names[opp], "s1": scores[conn], "s2": scores[opp]})
@@ -45,6 +50,7 @@ def handle_client(conn, addr):
                     send_json(opp, msg)
     except: pass
     finally:
+        print(f"[DISCONNECT] {addr} disconnected.")
         if conn in clients: clients.remove(conn)
         conn.close()
 
